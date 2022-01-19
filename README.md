@@ -15,4 +15,4 @@ Basierend auf .Net Core und JTLwawiExtern.dll.
 
 Importer for shipping information into JTL Wawi. The importer uses the Jtl DLL, so it also executes workflows if they are set.
 
-Basierend on .Net Core and JTLwawiExtern.dll.
+Based on .Net Core and JTLwawiExtern.dll.
