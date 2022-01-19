@@ -1,7 +1,7 @@
 # JtlVersanddatenimport
 
-English/Deutsch\n
-This document contains documentation in german and englisch.\n
+English/Deutsch<br />
+This document contains documentation in german and englisch.<br />
 Dieses Dokument enthält Abschnitte in Deutsch und Englisch.
 
 ## Deutsche Beschreibung
