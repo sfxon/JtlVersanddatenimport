@@ -64,6 +64,7 @@ namespace Versanddatenimport
             this.folderBrowserIncomingFiles = new System.Windows.Forms.FolderBrowserDialog();
             this.folderBrowserArchive = new System.Windows.Forms.FolderBrowserDialog();
             this.folderBrowserLog = new System.Windows.Forms.FolderBrowserDialog();
+            this.autostartWorker = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -153,9 +154,9 @@ namespace Versanddatenimport
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(219, 450);
+            this.button1.Location = new System.Drawing.Point(13, 474);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(195, 23);
+            this.button1.Size = new System.Drawing.Size(401, 23);
             this.button1.TabIndex = 10;
             this.button1.Text = "Speichern";
             this.button1.UseVisualStyleBackColor = true;
@@ -374,11 +375,22 @@ namespace Versanddatenimport
             this.label11.TabIndex = 0;
             this.label11.Text = "Ordner für eingehende Dateien";
             // 
+            // autostartWorker
+            // 
+            this.autostartWorker.AutoSize = true;
+            this.autostartWorker.Location = new System.Drawing.Point(26, 451);
+            this.autostartWorker.Name = "autostartWorker";
+            this.autostartWorker.Size = new System.Drawing.Size(206, 17);
+            this.autostartWorker.TabIndex = 15;
+            this.autostartWorker.Text = "Worker beim Start automatisch starten";
+            this.autostartWorker.UseVisualStyleBackColor = true;
+            // 
             // Optionen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(422, 485);
+            this.ClientSize = new System.Drawing.Size(422, 513);
+            this.Controls.Add(this.autostartWorker);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -396,6 +408,7 @@ namespace Versanddatenimport
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -436,5 +449,6 @@ namespace Versanddatenimport
         private System.Windows.Forms.FolderBrowserDialog folderBrowserIncomingFiles;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserArchive;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserLog;
+        private System.Windows.Forms.CheckBox autostartWorker;
     }
 }

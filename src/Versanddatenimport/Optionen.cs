@@ -42,6 +42,15 @@ namespace Versanddatenimport
                 textBoxFolderIncomingFiles.Text = config.folderIncomingFiles;
                 textBoxFolderArchive.Text = config.folderArchive;
                 textBoxFolderLog.Text = config.folderLog;
+
+                if (config.autostartWorker)
+                {
+                    autostartWorker.Checked = true;
+                } else
+                {
+                    autostartWorker.Checked = false;
+                }
+
             }
         }
 
@@ -95,6 +104,14 @@ namespace Versanddatenimport
 
             config.TimeIntervalInMinutes = interval;
 
+            // AutostartWorker Option abfragen
+            if(autostartWorker.Checked)
+            {
+                config.autostartWorker = true;
+            } else
+            {
+                config.autostartWorker = false;
+            }
             
             //Json erstellen.
             var options = new JsonSerializerOptions
@@ -110,8 +127,6 @@ namespace Versanddatenimport
             System.IO.File.WriteAllText(@"config.json", json);
 
             this.Close();
-
-            //JsonSerializer.Deserialize(json, ???);
         }
 
         private void buttonChooseFolderIncomingFiles_Click(object sender, EventArgs e)

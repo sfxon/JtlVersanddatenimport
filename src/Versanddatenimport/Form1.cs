@@ -1,5 +1,3 @@
-Form1.cs
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,6 +28,24 @@ namespace Versanddatenimport
         public Form1()
         {
             InitializeComponent();
+
+            //Event Handler setzen, für den Load Event.
+            this.Shown += new System.EventHandler(this.Form1_Shown);
+        }
+
+        // Event Handler: wird ausgeführt, wenn das Fenster angezeigt wird.
+        // Startet bei gewählter Option den Worker automatisch.
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            if(!initConfig())
+            {
+                return;
+            }
+
+            if(workerConfig.autostartWorker)
+            {
+                buttonStartWorker.PerformClick();
+            }
         }
 
         private void buttonTestConnection_Click(object sender, EventArgs e)
