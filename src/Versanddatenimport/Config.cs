@@ -36,9 +36,16 @@ namespace Versanddatenimport
         // Worker führt nur keine Aktion aus, wenn er nicht
         // innerhalb der "aktiven" Zeitspanne liegt,
         // also zwischen timeFrom und timeTo.
-        public int TimeIntervalInMinutes { get; set; }  
+        public int TimeIntervalInMinutes { get; set; }
+
+        // Ordner für empfangene Dateien, die gesplittet werden sollen
+        // Das ist der Ordner mit CSV-Dateien, die zeilenweise aufgesplittet werden sollen,
+        // damit der Importer die Datensätze einzeln importieren kann.
+        public String folderReceivedFilesForSplit { get; set; }
 
         // Ordner für eingehende Dateien
+        // Das ist der Ordner, in den die gesplitteten Dateien verschoben wurden.
+        // Diese werden von diesem Ordner aus in die Wawi importiert.
         public String folderIncomingFiles { get; set; }
 
         // Ordner für das Archiv.

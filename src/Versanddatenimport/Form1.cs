@@ -182,13 +182,35 @@ namespace Versanddatenimport
 
         private void workerProcess(Object myObject, EventArgs myEventArgs)
         {
+            DateTime tmpDate = DateTime.Now;
+            textBoxWorkerOutput.Text += tmpDate.ToString("yyyy-MM-dd HH:mm:ss") + " - Starte Verarbeitung.\r\n";
+
             worker.Stop();
-            doVersanddatenImport();
+
+            // CSV-Dateien mit Versanddaten aufteilen, wenn es komplexe CSV-Dateien gibt.
+            if (!prepareInputFiles())
+            {
+                // Wenn es keine CSV-Dateien zum Aufteilen gab,
+                // Daten importieren.
+                doVersanddatenImport();
+            }
+            
             worker.Start();
         }
 
         private void buttonSingleImport_Click(object sender, EventArgs e)
         {
+            DateTime tmpDate = DateTime.Now;
+            textBoxWorkerOutput.Text += tmpDate.ToString("yyyy-MM-dd HH:mm:ss") + " - Starte Verarbeitung.\r\n";
+
+            // CSV-Dateien mit Versanddaten aufteilen, wenn es komplexe CSV-Dateien gibt.
+            if (prepareInputFiles())
+            {
+                return;
+            }
+
+            // Wenn es keine CSV-Dateien zum Aufteilen gab,
+            // Daten importieren.
             if (!initVersanddatenImport())
             {
                 return;
@@ -205,8 +227,6 @@ namespace Versanddatenimport
             String logFolder = workerConfig.folderLog + "/" + logFolderDate;
             FileStream logfile = null;
             StreamWriter logfileWriter = null;
-
-            textBoxWorkerOutput.Text = tmpDate.ToString("yyyy-MM-dd HH:mm:ss") + " - Starte Verarbeitung.\r\n";
 
             try
             {
@@ -340,6 +360,19 @@ namespace Versanddatenimport
             return "";
         }
 
+        private String getNextFilenameToSplit()
+        {
+            DirectoryInfo d = new DirectoryInfo(workerConfig.folderReceivedFilesForSplit);
+            FileInfo[] files = d.GetFiles("*.csv");
+
+            for (int i = 0; i < files.Length; i++)
+            {
+                return files[i].FullName;
+            }
+
+            return "";
+        }
+
         private bool isWorkingDirectoryEmpty()
         {
             if(!Directory.Exists("worker"))
@@ -449,6 +482,72 @@ namespace Versanddatenimport
             VersanddatenImporter.Apply();
 
             return true;
+        }
+
+        private bool prepareInputFiles()
+        {
+            textBoxWorkerOutput.Text += "Prüfe, ob eine komplexe Import Datei zum Aufteilen vorliegt.\r\n";
+
+            // Prüfe, ob eine CSV-Datei vorhanden ist.
+            String nextFile = getNextFilenameToSplit();
+
+            if ("" == nextFile)
+            {
+                textBoxWorkerOutput.Text += "Keine Datei zum Aufteilen vorhanden.\r\n";
+                return false;
+            }
+
+            // Wenn eine Datei gefunden wurde, wird diese aufgeteilt:
+            textBoxWorkerOutput.Text += "Teile Datei " + nextFile + " auf.\r\n";
+
+            splitFile(nextFile);
+
+            return true;
+        }
+
+        private void splitFile(String filename)
+        {
+            //Datei-Inhalte überprüfen.
+            if (false == loadFile(filename))
+            {
+                textBoxWorkerOutput.Text += lastError + "\r\n";
+                return;
+            }
+
+            if (csvData.Count == 0)
+            {
+                textBoxWorkerOutput.Text += lastError + "\r\n";
+                return;
+            }
+
+            //Zeilen importieren..
+            //if (false == importTableRows(logfileWriter))
+            splitTableRows(filename);
+
+            String destinationFilename = "splittedLog/" + Path.GetFileName(filename);
+            File.Delete(destinationFilename); // Datei löschen, damit das nicht fehlschlägt, falls die Datei schon existiert.
+            File.Move(filename, destinationFilename);
+        }
+
+        private void splitTableRows(String filename) 
+        {
+            for (int i = 0; i < csvData.Count; i++)
+            {
+                // Dateiname für die neue Datei erzeugen.
+                String newFilename = Path.GetFileName(filename) + i + ".csv";
+                newFilename = workerConfig.folderIncomingFiles + "/" + newFilename;
+                
+                // Filestream erstellen.
+                FileStream newFileStream = File.Create(newFilename);
+                StreamWriter newFileStreamWriter = new StreamWriter(newFileStream);
+
+                newFileStreamWriter.Write(csvData[i][0].ToString() + ";" + csvData[i][1].ToString() + ";" + csvData[i][2].ToString());
+
+                newFileStreamWriter.Close();
+                newFileStream.Close();
+
+                textBoxWorkerOutput.Text += "Neue Datei: " + newFilename + "\r\n";
+            }
         }
     }
 }

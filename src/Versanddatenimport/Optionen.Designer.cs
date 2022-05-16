@@ -65,6 +65,10 @@ namespace Versanddatenimport
             this.folderBrowserArchive = new System.Windows.Forms.FolderBrowserDialog();
             this.folderBrowserLog = new System.Windows.Forms.FolderBrowserDialog();
             this.autostartWorker = new System.Windows.Forms.CheckBox();
+            this.buttonChooseReceivedFilesFolder = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBoxReceivedFilesFolder = new System.Windows.Forms.TextBox();
+            this.folderBrowserReceivedFiles = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -154,7 +158,7 @@ namespace Versanddatenimport
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(13, 474);
+            this.button1.Location = new System.Drawing.Point(13, 518);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(401, 23);
             this.button1.TabIndex = 10;
@@ -281,6 +285,9 @@ namespace Versanddatenimport
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.buttonChooseReceivedFilesFolder);
+            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Controls.Add(this.textBoxReceivedFilesFolder);
             this.groupBox4.Controls.Add(this.textBoxFolderLog);
             this.groupBox4.Controls.Add(this.buttonChooseFolderLog);
             this.groupBox4.Controls.Add(this.label13);
@@ -292,21 +299,21 @@ namespace Versanddatenimport
             this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Location = new System.Drawing.Point(13, 282);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(401, 162);
+            this.groupBox4.Size = new System.Drawing.Size(401, 207);
             this.groupBox4.TabIndex = 14;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Ordner";
             // 
             // textBoxFolderLog
             // 
-            this.textBoxFolderLog.Location = new System.Drawing.Point(12, 127);
+            this.textBoxFolderLog.Location = new System.Drawing.Point(9, 176);
             this.textBoxFolderLog.Name = "textBoxFolderLog";
-            this.textBoxFolderLog.Size = new System.Drawing.Size(260, 20);
+            this.textBoxFolderLog.Size = new System.Drawing.Size(263, 20);
             this.textBoxFolderLog.TabIndex = 8;
             // 
             // buttonChooseFolderLog
             // 
-            this.buttonChooseFolderLog.Location = new System.Drawing.Point(279, 125);
+            this.buttonChooseFolderLog.Location = new System.Drawing.Point(279, 174);
             this.buttonChooseFolderLog.Name = "buttonChooseFolderLog";
             this.buttonChooseFolderLog.Size = new System.Drawing.Size(112, 23);
             this.buttonChooseFolderLog.TabIndex = 7;
@@ -317,7 +324,7 @@ namespace Versanddatenimport
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(10, 111);
+            this.label13.Location = new System.Drawing.Point(10, 160);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(60, 13);
             this.label13.TabIndex = 6;
@@ -325,14 +332,14 @@ namespace Versanddatenimport
             // 
             // textBoxFolderArchive
             // 
-            this.textBoxFolderArchive.Location = new System.Drawing.Point(13, 84);
+            this.textBoxFolderArchive.Location = new System.Drawing.Point(9, 133);
             this.textBoxFolderArchive.Name = "textBoxFolderArchive";
-            this.textBoxFolderArchive.Size = new System.Drawing.Size(260, 20);
+            this.textBoxFolderArchive.Size = new System.Drawing.Size(264, 20);
             this.textBoxFolderArchive.TabIndex = 5;
             // 
             // buttonChooseFolderArchive
             // 
-            this.buttonChooseFolderArchive.Location = new System.Drawing.Point(279, 82);
+            this.buttonChooseFolderArchive.Location = new System.Drawing.Point(279, 131);
             this.buttonChooseFolderArchive.Name = "buttonChooseFolderArchive";
             this.buttonChooseFolderArchive.Size = new System.Drawing.Size(112, 23);
             this.buttonChooseFolderArchive.TabIndex = 4;
@@ -343,7 +350,7 @@ namespace Versanddatenimport
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(10, 68);
+            this.label12.Location = new System.Drawing.Point(10, 117);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(72, 13);
             this.label12.TabIndex = 3;
@@ -351,14 +358,14 @@ namespace Versanddatenimport
             // 
             // textBoxFolderIncomingFiles
             // 
-            this.textBoxFolderIncomingFiles.Location = new System.Drawing.Point(12, 41);
+            this.textBoxFolderIncomingFiles.Location = new System.Drawing.Point(9, 88);
             this.textBoxFolderIncomingFiles.Name = "textBoxFolderIncomingFiles";
-            this.textBoxFolderIncomingFiles.Size = new System.Drawing.Size(260, 20);
+            this.textBoxFolderIncomingFiles.Size = new System.Drawing.Size(263, 20);
             this.textBoxFolderIncomingFiles.TabIndex = 2;
             // 
             // buttonChooseFolderIncomingFiles
             // 
-            this.buttonChooseFolderIncomingFiles.Location = new System.Drawing.Point(278, 39);
+            this.buttonChooseFolderIncomingFiles.Location = new System.Drawing.Point(278, 86);
             this.buttonChooseFolderIncomingFiles.Name = "buttonChooseFolderIncomingFiles";
             this.buttonChooseFolderIncomingFiles.Size = new System.Drawing.Size(112, 23);
             this.buttonChooseFolderIncomingFiles.TabIndex = 1;
@@ -369,7 +376,7 @@ namespace Versanddatenimport
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(9, 24);
+            this.label11.Location = new System.Drawing.Point(9, 71);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(153, 13);
             this.label11.TabIndex = 0;
@@ -378,18 +385,44 @@ namespace Versanddatenimport
             // autostartWorker
             // 
             this.autostartWorker.AutoSize = true;
-            this.autostartWorker.Location = new System.Drawing.Point(26, 451);
+            this.autostartWorker.Location = new System.Drawing.Point(22, 495);
             this.autostartWorker.Name = "autostartWorker";
             this.autostartWorker.Size = new System.Drawing.Size(206, 17);
             this.autostartWorker.TabIndex = 15;
             this.autostartWorker.Text = "Worker beim Start automatisch starten";
             this.autostartWorker.UseVisualStyleBackColor = true;
             // 
+            // buttonChooseReceivedFilesFolder
+            // 
+            this.buttonChooseReceivedFilesFolder.Location = new System.Drawing.Point(281, 41);
+            this.buttonChooseReceivedFilesFolder.Name = "buttonChooseReceivedFilesFolder";
+            this.buttonChooseReceivedFilesFolder.Size = new System.Drawing.Size(112, 23);
+            this.buttonChooseReceivedFilesFolder.TabIndex = 14;
+            this.buttonChooseReceivedFilesFolder.Text = "Ordner suchen..";
+            this.buttonChooseReceivedFilesFolder.UseVisualStyleBackColor = true;
+            this.buttonChooseReceivedFilesFolder.Click += new System.EventHandler(this.buttonChooseReceivedFilesFolder_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(8, 25);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(273, 13);
+            this.label14.TabIndex = 13;
+            this.label14.Text = "Eingehende CSV Dateien (die gesplittet werden müssen)";
+            // 
+            // textBoxReceivedFilesFolder
+            // 
+            this.textBoxReceivedFilesFolder.Location = new System.Drawing.Point(7, 41);
+            this.textBoxReceivedFilesFolder.Name = "textBoxReceivedFilesFolder";
+            this.textBoxReceivedFilesFolder.Size = new System.Drawing.Size(263, 20);
+            this.textBoxReceivedFilesFolder.TabIndex = 12;
+            // 
             // Optionen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(422, 513);
+            this.ClientSize = new System.Drawing.Size(422, 553);
             this.Controls.Add(this.autostartWorker);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -450,5 +483,9 @@ namespace Versanddatenimport
         private System.Windows.Forms.FolderBrowserDialog folderBrowserArchive;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserLog;
         private System.Windows.Forms.CheckBox autostartWorker;
+        private System.Windows.Forms.Button buttonChooseReceivedFilesFolder;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBoxReceivedFilesFolder;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserReceivedFiles;
     }
 }

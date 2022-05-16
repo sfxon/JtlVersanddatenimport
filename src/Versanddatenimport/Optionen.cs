@@ -119,6 +119,7 @@ namespace Versanddatenimport
                 WriteIndented = true        //Pretty Print for json
             };
 
+            config.folderReceivedFilesForSplit = textBoxReceivedFilesFolder.Text;
             config.folderIncomingFiles = textBoxFolderIncomingFiles.Text;
             config.folderArchive = textBoxFolderArchive.Text;
             config.folderLog = textBoxFolderLog.Text;
@@ -150,6 +151,19 @@ namespace Versanddatenimport
             if(folderBrowserLog.ShowDialog() == DialogResult.OK)
             {
                 textBoxFolderLog.Text = folderBrowserLog.SelectedPath;
+            }
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonChooseReceivedFilesFolder_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserReceivedFiles.ShowDialog() == DialogResult.OK)
+            {
+                textBoxReceivedFilesFolder.Text = folderBrowserReceivedFiles.SelectedPath;
             }
         }
     }
