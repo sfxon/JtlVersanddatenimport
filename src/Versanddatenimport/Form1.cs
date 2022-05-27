@@ -183,7 +183,7 @@ namespace Versanddatenimport
         private void workerProcess(Object myObject, EventArgs myEventArgs)
         {
             DateTime tmpDate = DateTime.Now;
-            textBoxWorkerOutput.Text += tmpDate.ToString("yyyy-MM-dd HH:mm:ss") + " - Starte Verarbeitung.\r\n";
+            textBoxWorkerOutput.Text = tmpDate.ToString("yyyy-MM-dd HH:mm:ss") + " - Starte Verarbeitung.\r\n";
 
             worker.Stop();
 
